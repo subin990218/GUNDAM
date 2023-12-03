@@ -1,0 +1,32 @@
+.title {
+    font-weight: var(--font-bold);
+    /* margin-bottom: 1.2rem;
+    margin-top: 3rem; */
+}
+
+.container {
+    display: flex;
+    width: 16rem;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    justify-content: space-between;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+
+}
+
+.horizontal {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    margin-top: 3rem;
+    gap: 1rem;
+}
+
+.length {
+    font-weight: var(--font-medium);
+}

@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+
+  nginx:
+    build:
+      context: ./sse_prod
+      dockerfile: Dockerfile
+    #image: nginx-image/nginx:latest
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - spring-redis
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    container_name: nginx
+    environment:
+      - WDS_SOCKET_PORT=0
+    #dns_search: s09p12e105_spring-redis
+
+networks:
+  spring-redis:
+    external: true

@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'com.mobilesuit'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    //Gson json
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
+
+    //spring-doc ( Swagger )
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+
+    // markdown parse
+    implementation 'com.vladsch.flexmark:flexmark-all:0.62.2'
+    //git
+    implementation 'org.kohsuke:github-api:1.315'
+
+
+    // OpenAPI 서드파티 라이브러리 ( 2023.04.15 기준 0.12.0이 최신버전 )
+    implementation 'com.theokanning.openai-gpt3-java:service:0.16.0'
+
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

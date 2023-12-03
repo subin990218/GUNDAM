@@ -1,0 +1,60 @@
+server:
+  port: 7070
+
+spring:
+  redis:
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 2
+    port: 6379
+    host: redis
+    password: ${REDIS_PASSWORD}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://k9e207.p.ssafy.io:3306/gundam?serverTimezone=Asia/Seoul
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-Auto: create-drop #update 하면 변경만함, 저장함 반대는 create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        format_sql: true
+        show_sql: true
+    defer-datasource-initialization: true
+  mvc:
+    converters:
+      preferred-json-mapper: gson
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 278e1aba293a475c4292
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            redirectUri: http://k9e207.p.ssafy.io:7070/auth/github/callback
+            scope: repo, user
+
+
+logging:
+  level:
+    root: info
+  file:
+    name: log/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+      max-file-size: 1MB
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+  access-token-expiration-sec: 1800
+  refresh-token-expiration-sec: 1209600
+
+mail:
+  address:
+    admin: ssafy@ssafy.com

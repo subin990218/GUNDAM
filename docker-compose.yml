@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+  
+  nginx:
+    build:
+      context: ./prod
+      dockerfile: Dockerfile
+    #image: nginx-image/nginx:latest
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - spring-redis
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    container_name: nginx
+    environment:
+      - WDS_SOCKET_PORT=0
+    #dns_search: s09p12e105_spring-redis
+
+  react:
+    build:
+      context: ./frontend/web
+      dockerfile: Dockerfile
+    image: react-image/react:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - spring-redis
+    container_name: react
+    # environment :
+    #   - WDS_SOCKET_PORT=0
+
+networks:
+  spring-redis:
+    external: true

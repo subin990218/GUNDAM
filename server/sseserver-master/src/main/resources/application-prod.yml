@@ -1,0 +1,6 @@
+server:
+  port: 8090
+
+#logging:
+#  level:
+#    org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG

@@ -1,0 +1,57 @@
+.title {
+    font-weight: var(--font-bold);
+    margin-bottom: 2.1rem;
+    font-size: var(--font-h1);
+}
+
+.img {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+
+.black {
+    color: var(--main-black-color);
+    width: 8.5rem;
+    /* text-align: center; */
+    padding-bottom: 1rem;
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    flex-wrap: nowrap;
+    gap: 0;
+    width: 100%;
+}
+
+/* .width {
+    padding-left: 1rem;
+    padding-right: 1rem;
+} */
+
+.text {
+    margin: 0.5rem 2rem;
+    font-size: var(--font-h2);
+}
+.text2 {
+    margin: 0rem 2rem;
+    font-size: var(--font-h1);
+}
+
+.margin {
+    margin-top: 3rem;
+}
+
+.codereview {
+    font-size: var(--font-h1);
+    text-align: center;
+    /* margin-left: 2rem; */
+    margin-bottom: 0.7rem;
+    font-weight: var(--font-bold);
+}

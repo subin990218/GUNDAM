@@ -1,0 +1,131 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.mobilesuit.clientplugin</id>
+
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>GUNDAM</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="ygangmin@gmail.com">Team MobileSuit</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+<p>Git</p>
+        <p>Unite-on</p>
+        <p>Network with</p>
+        <p>Development environment</p>
+        <p>Articulated</p>
+        <p>Manager</p>
+        <br>
+        <p>GUNDAM is a plug-in that makes collaboration more convenient by strengthening the connection between Intellij and Github.</p>
+
+<p>Users who have the permission to modify in the same repository can interact to proceed with development.</p>
+
+<p>Prevent commit conflicts by identifying which files others are using.</p>
+
+<p>Send a help request or ping the question mark if you have any questions about the code.</p>
+]]></description>
+
+
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.vcs</depends>
+
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Git Live" anchor="right"  factoryClass="com.mobilesuit.clientplugin.window.PluginToolWindowFactory">
+            <!--<factory class="com.mobilesuit.clientplugin.window.PluginToolWindowFactory"/>-->
+        </toolWindow>
+        <projectConfigurable id="MainSettingsConfigurable" displayName="GUNDAM" groupId="tools" instance="com.mobilesuit.clientplugin.setting.MainSettingsConfigurable"/>
+        <completion.contributor
+                language="TEXT"
+                order="first"
+                implementationClass="com.mobilesuit.clientplugin.setting.CommitMessageCompletionContributor"/>
+
+        <toolWindow id="GPTResult" anchor="right" factoryClass="com.mobilesuit.clientplugin.window.GPTResultWindowFactory">
+            <!--      <content id="myCodeViewContent" />-->
+        </toolWindow>
+        <toolWindow id="CodeReviewSideBar" anchor="left" factoryClass="com.mobilesuit.clientplugin.gpt.ui.CodeReviewSiderBarFactory">
+            <!--      <content id="myCodeViewContent" />-->
+        </toolWindow>
+
+        <applicationService serviceImplementation="com.mobilesuit.clientplugin.appservice.PluginService"/>
+
+        <postStartupActivity implementation="com.mobilesuit.clientplugin.appservice.PluginActivity"/>
+
+        <!--<checkinHandlerFactory implementation="com.mobilesuit.clientplugin.handler.GitCommitHandlerFactory"/>-->
+
+        <prePushHandler implementation="com.mobilesuit.clientplugin.handler.PushHandler"/>
+    </extensions>
+
+    <actions>
+        <action id="OptionSideAction" class="com.mobilesuit.clientplugin.window.OptionSideAction"
+                text="OptionSideAction">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+
+        <action id="custom.gptResultFrame" class="com.mobilesuit.clientplugin.window.GPTResultOpenAction" text="GPTResultOpenAction"
+                description="GPTResultOpenAction">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+        <action id="Message.MessageAction" class="com.mobilesuit.clientplugin.gpt.action.MessageAction" text="CodeReview">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+
+        <action id="GoogleSearchAction" class="com.mobilesuit.clientplugin.googlesearch.GoogleSearch"
+                text="Google Search">
+            <add-to-group group-id="ProblemsView.ToolWindow.TreePopup" anchor="last"/>
+        </action>
+
+        <action id="CodeReviewSideBarScreen" class="com.mobilesuit.clientplugin.gpt.action.CodeReviewSideBarAction"
+                text="CodeReviewSideBar">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="BuildCommitMessage" class="com.mobilesuit.clientplugin.convention.BuildCommitMessageAction"
+                text="Build Commit Message">
+            <add-to-group group-id="Vcs.MessageActionGroup" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt RIGHT"/>
+        </action>
+        <action id="CodeReview -C" class="com.mobilesuit.clientplugin.gpt.action.CodeReviewChangeAction"
+                text="CodeReview -C">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+
+        <action id="MemoAction" class="com.mobilesuit.clientplugin.memo.Memo" text="Memo">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
+        <action id="NotionsAction" class="com.mobilesuit.clientplugin.notion.SendToNotion" text="Send To Notion">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+
+        <action id="highlight" class="com.mobilesuit.clientplugin.highlight.HighlightAction" text="highlight"
+                description="highlight">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt A" />
+        </action>
+    </actions>
+
+    <projectListeners>
+        <listener class="com.mobilesuit.clientplugin.listener.MyProjectManagerListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <!--<listener class="com.mobilesuit.clientplugin.listener.MyFileEditorManagerListener"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>-->
+
+        <listener class="com.mobilesuit.clientplugin.listener.My2FileEditorManagerListener"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+
+    </projectListeners>
+
+</idea-plugin>

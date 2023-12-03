@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration status="info">
+
+    <Properties>
+        <Property name="FILE_LOG_PATTERN">%d{yyyy-MM-dd_HH:mm:ss.SSS} %level [%thread] [%logger:%line] ::: %msg%n</Property>
+    </Properties>
+    <Appenders>
+        <!--<RollingFile name="LogToFile" fileName="C:/Users/SSAFY/IdeaProjects/S09P31E207/LKM/clientplugin-master/logs/application.log"
+                     filePattern="C:/Users/SSAFY/IdeaProjects/S09P31E207/LKM/clientplugin-master/logs/application.log.%d{yyyy-MM-dd-hh-mm}">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="logs" maxDepth="1">
+                    <IfAccumulatedFileCount exceeds="3"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>-->
+        <RollingFile name="LogToFile" fileName="C:\Users\SSAFY\IdeaProjects\S09P31E207\LKM\clientplugin-master\logs\application.log" filePattern="C:\Users\SSAFY\IdeaProjects\S09P31E207\LKM\clientplugin-master\logs\application.log.%d{yyyy-MM-dd-HH-mm}">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="200KB"/>
+                <TimeBasedTriggeringPolicy interval="1440"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10" fileIndex="min"/>
+        </RollingFile>
+
+        <RollingFile name="File_Appender" fileName="C:\Users\SSAFY\IdeaProjects\S09P31E207\OCW\clientplugin-master\logs\application.log" filePattern="C:\Users\SSAFY\IdeaProjects\S09P31E207\OCW\clientplugin-master\logs\application.log.%d{yyyy-MM-dd-HH-mm}">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="200KB"/>
+                <TimeBasedTriggeringPolicy interval="1440"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10" fileIndex="min"/>
+        </RollingFile>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd hh:mm:ss} %5p [%c] %m%n"/>
+        </Console>
+    </Appenders>
+
+    <loggers>
+        <root level="info" additivity="true">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="LogToFile"/>
+        </root>
+
+        <Logger name="com.mobilesuit.clientplugin.gpt.client" level="info" additivity="false">
+            <AppenderRef ref="File_Appender"/>
+        </Logger>
+    </loggers>
+
+
+</configuration>

@@ -1,0 +1,25 @@
+openai:
+  model: gpt-3.5-turbo
+  api:
+    url: https://api.openai.com/v1/chat/completions
+    key: ${TOKEN}
+
+gpt:
+  token: ${TOKEN}
+
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url : jdbc:mysql://k9e207.p.ssafy.io :3306/gundam?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+    password: 7818
+  jpa:
+    hibernate:
+      ddl-auto: update # 혹은 update, create
+    properties:
+      hibernate:
+        show_sql: true #쿼리를 보여준다.
+        format_sql: true

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/static/img192.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GUNDAM</title>
+    <script type="module" crossorigin src="/assets/index-3791ad93.js"></script>
+    <link rel="stylesheet" href="/assets/index-22782260.css">
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      function sendToken(json) {
+
+        fetch('http://localhost:23137/oauth', {
+          method: 'POST',
+          body: JSON.stringify(json
+          )
+        })
+                .then(response => {
+                  console.log(response.status)
+                  return response.status;
+                })
+      }
+      function request() {
+        fetch('http://k9e207.p.ssafy.io:7070/auth/token', {
+          method: 'GET',
+        })
+                .then(response => {
+                  return response.json();
+                })
+                .then(data => {
+                  console.log(data);
+                  sendToken(data);
+                });
+      }
+      request();
+    </script>
+  </body>
+</html>

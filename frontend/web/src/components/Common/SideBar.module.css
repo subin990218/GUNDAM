@@ -1,0 +1,97 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-black-color2);
+  width: 18rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0rem;
+  z-index: 1000;
+  transform: translateX(-100%);
+  /* transition: 0.4s ease-out; */
+  /* justify-content: center; */
+  /* position: relative; */
+}
+
+.column.transition-enabled {
+  /* 첫 렌더링 이후에 적용할 transition */
+  transition: 0.4s ease-out;
+}
+
+.sidebar-initial {
+  transition: all 0.5s ease;
+  transition-delay: 0.5s;
+  /* 기타 필요한 스타일 */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.grey {
+  background-color: #525252;
+  height: 40vh;
+  /* position: absolute; */
+  /* top: 35vh; */
+  margin-top: 3rem;
+}
+
+.link {
+  color: white;
+  padding: 0.5rem 2rem;
+}
+
+.x {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  filter: invert(0) !important;
+}
+
+.image {
+  width: 4rem;
+  filter: invert(0) !important;
+  border-radius: 50%;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  margin-top: 4rem;
+}
+
+.profileContainer > p {
+  color: white;
+  font-weight: var(--font-regular);
+  margin-top: 1.5rem;
+  font-size: var(--font-h1);
+}
+
+.profileContainer > div {
+  color: white;
+  font-size: var(--font-h2);
+  /* font-weight: var(--font-bold); */
+}
+
+.dropdown {
+  font-size: var(--font-h1);
+  color: white;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}

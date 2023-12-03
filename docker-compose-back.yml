@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: gundam
+    ports:
+      - "3306:3306"
+    networks:
+      - spring-redis
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d # MySQL 설정 파일 위치
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - spring-redis
+    environment:
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: fisher-log
+
+    volumes:
+      - ./data/mongodb:/data/db
+
+  redis:
+    image: "redis:alpine"
+    command: ["redis-server", "--requirepass", "1747"]
+    ports:
+    - "6379:6379"
+    networks:
+      - spring-redis
+    container_name: redis
+
+networks:
+  spring-redis:
+    external: true
+
+volumes:
+  vol:
