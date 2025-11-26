@@ -1,4 +1,4 @@
-# GUNDAM 프로젝트 
+# GUNDAM 
 
 ![GUNDAM.png](./GUNDAM.png)
 
