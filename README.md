@@ -3,52 +3,6 @@
 ![GUNDAM.png](./GUNDAM.png)
 
 
-기본 EC2 인스턴스 도메인 k9e207.p.ssafy.io
-
-**Plugin JDK** : 
-
-- Zulu 17
-
-**Spring JDK** :
-
-- Zulu 17
-
-**Plugin Gradle Version** : 7.5.1
-
-**Spring Gradle Version** :  8.1.1
-
-**Spring Boot Version** : 3.1.2
-
-- **Main** 서버 Port :  8081
-- **인증/인가** 서버 Port : 8090
-- **Logging** 서버 Port :  6060
-- **WebSocket** 서버 Port : 7070
-
-**MySQL** : 8.0.33
-
-local 기준 port :  3306
-
-password : 7818
-
-**Redis** 
-
-local 기준 port : 6379
-
-password : 1747
-
-**MongoDB** : 6.0.7
-
-Local 기준 Port : 27017
-
-password : 7818
-
-**Kafka** :  3.6.0
-
-local 기준 Port : 9092
-
-**React** : 18.2.0
-
-
 # 0. 개요
 
 
